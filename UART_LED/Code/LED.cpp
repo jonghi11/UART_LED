@@ -71,7 +71,7 @@ void Led::setState(LedState_Type _state){
   //Sätta statusen av LED:n
   this->state = _state;
   
-  //Kolla färgen på LED för att veta att korrekt LED manipuleras
+x  //Kolla färgen på LED för att veta att korrekt LED manipuleras
   switch(this->color){
   
       //om LED Röd
