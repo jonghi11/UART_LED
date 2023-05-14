@@ -7,7 +7,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
   this->color = _color;//color och state attributen tas från den privata klassen som finns i Led.h filen  med "this" funktionen och sätter dem lika med _color _state
   this->state = _state;//
   
-  //Enablea klockan för LED-porten (GPIOB)
+  //Enablea klockan för LED-porten (GPIOB) med ett AHB1 register som har en maximal domän frekvens på 100MHz "ENR = enable"
   RCC->AHB1ENR |= LED_PORT_CLOCK;
   
   //Konfigurera LED-pinsen baserad på deras färg och status
@@ -16,7 +16,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
     case RED: //Sätta portläget för LED-konfigurationen till output
       LED_PORT->MODER |= LED_RED_MODE_BIT;
       if(this->state == ON){
-        //Stänga på LED
+        //Sätter LED
         LED_PORT->ODR |= LED_RED_PIN;
       }
       else{
@@ -28,7 +28,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
       case YELLOW: //Sätta portläget för LED-konfigurationen till output
       LED_PORT->MODER |= LED_YELLOW_MODE_BIT;
       if(this->state == ON){
-        //Stänga på LED
+        //Sätter på LED
         LED_PORT->ODR |= LED_YELLOW_PIN;
       }
       else{
@@ -40,7 +40,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
       case BLUE: //Sätta portläget för LED-konfigurationen till output
       LED_PORT->MODER |= LED_BLUE_MODE_BIT;
       if(this->state == ON){
-        //Stänga på LED
+        //Sätter på LED
         LED_PORT->ODR |= LED_BLUE_PIN;
       }
       else{
@@ -52,7 +52,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
       case GREEN: //Sätta portläget för LED-konfigurationen till output
       LED_PORT->MODER |= LED_GREEN_MODE_BIT;
       if(this->state == ON){
-        //Stänga på LED
+        //Sätter  på LED
         LED_PORT->ODR |= LED_GREEN_PIN;
       }
       else{
