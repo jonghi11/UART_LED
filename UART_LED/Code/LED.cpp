@@ -4,8 +4,8 @@
 Led::Led(LedColor_Type _color, LedState_Type _state)
 {
 
-  this->color = _color;
-  this->state = _state;
+  this->color = _color;//color och state attributen tas från den privata klassen som finns i Led.h filen  med "this" funktionen och sätter dem lika med _color _state
+  this->state = _state;//
   
   //Enablea klockan för LED-porten (GPIOB)
   RCC->AHB1ENR |= LED_PORT_CLOCK;
