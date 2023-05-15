@@ -12,17 +12,17 @@ RCC->AHB1ENR |= 0x01; //Aktiverar GPIO genom att sätta bit 0 i AHB1ENR til ett 
 
 // 3. Enablea pins relaterade till vald port för alternativ funktion 
 
-GPIO->MODER &= ~0x00F0; //Rensar bitarna 4-7 för att förbereda pins PA2 och PA3 
+GPIOA->MODER &= ~0x00F0; //Rensar bitarna 4-7 för att förbereda pins PA2 och PA3 
 //samt ~forcerar en invertering som leder till att bitarna som via hex betecknas med 1, i realvärde ersätts med 0
 
-GPIO->MODER |= 0x00A0; //Sätter bitarna 5 och 7 till 1 för att aktivera alternativ funktionalitet på pins PA2 och PA3
+GPIOA->MODER |= 0x00A0; //Sätter bitarna 5 och 7 till 1 för att aktivera alternativ funktionalitet på pins PA2 och PA3
 
 // 4    . Välja typen av alternativ funktion för de valda pinsen
-GPIO->AFR[0] &= ~0xFF00; //Rensar bitarna 8-15 för att förbereda pins PA2 PA3
-GPIO->AFR[0] |= 0x7700; //Sätter vi bitarna 8-11 samt 12-15 till formatet 0111
+GPIOA->AFR[0] &= ~0xFF00; //Rensar bitarna 8-15 för att förbereda pins PA2 PA3
+GPIOA->AFR[0] |= 0x7700; //Sätter vi bitarna 8-11 till 1 och 12-15 till 0 med en OR bitwise operation
 
 //* Konstruktion av enhetens kommunikation avslutas */
-
+ 
 // Konfiguration utav UART
 
 USART2->BRR = Ox0683; //Sätter vi standard baud-rate med hjälp av hexadecimalen 0x0683 (9600bps) 

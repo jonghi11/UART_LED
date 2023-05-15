@@ -1,6 +1,7 @@
 #include "LED.h" //Inkluderar header filen för att även denna fil skall känna till de olika LED-beteckningarna och funktioner
 
 //Konstruktorn för LED-lamporna
+//color samt state värdena finns som enums i led.h
 Led::Led(LedColor_Type _color, LedState_Type _state)
 {
 
@@ -11,16 +12,20 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
   RCC->AHB1ENR |= LED_PORT_CLOCK;
   
   //Konfigurera LED-pinsen baserad på deras färg och status
+  //Switch-sats som kollar LED färg.
   switch(_color){
   
     case RED: //Sätta portläget för LED-konfigurationen till output
+      //MODER registret styr vilket värde eller MODE pinnen skall ha. EX. Output eller Input.
       LED_PORT->MODER |= LED_RED_MODE_BIT;
       if(this->state == ON){
-        //Sätter LED
+        //Sätter på LED
+	//ODR styr man outputen med och i dett fall så sätter man output som ON.
         LED_PORT->ODR |= LED_RED_PIN;
       }
       else{
         //Stänga av LED
+	//Sätter output till OFF
         LED_PORT->ODR &= ~LED_RED_PIN;
       }
       break;
@@ -68,7 +73,7 @@ Led::Led(LedColor_Type _color, LedState_Type _state)
                
 void Led::setState(LedState_Type _state){
 
-  //Sätta statusen av LED:n
+  //Sätta statusen av LED:n ON=1, OFF=0
   this->state = _state;
   
 x  //Kolla färgen på LED för att veta att korrekt LED manipuleras
