@@ -20,3 +20,5 @@ Feel free to clone this repository using "git clone" and copy the HTTPS in your 
 
 To run it on a IDE compatible for a STM32 board(CubeIDE) with the necessary HAL libraries
 Initialize the UART peripheral using the USART2_Init() and pass in required configurations.
+
+------------------------------------------------------------------------------------------------
